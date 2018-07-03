@@ -13,11 +13,12 @@ library(shiny)
 ui <- fluidPage(
    
    # Application title
-   titlePanel("Interactive data explorer"),
-   
-   # Sidebar with a slider input for number of bins 
-   sidebarLayout(
-     sidebarPanel(
+  titlePanel("Interactive data explorer"), # give our app a title
+  
+  sidebarLayout( # this is Shiny's basic type of layout - more complex layouts exist
+    
+    # Sidebar with a slider input for number of bins 
+    sidebarPanel(
        ## add fileInput widget ##
        fileInput("uploadedfile", "Choose CSV File",
                  multiple = FALSE,

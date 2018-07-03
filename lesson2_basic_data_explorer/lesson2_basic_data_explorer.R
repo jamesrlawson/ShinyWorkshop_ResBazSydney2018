@@ -2,16 +2,18 @@
 
 library(shiny)
 library(ggplot2)
+library(plotly)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
    
-   # Application title
-   titlePanel("mtcars data explorer"),
-   
-   # Sidebar with a slider input for number of bins 
-   sidebarLayout(
-      sidebarPanel(
+  # Application title
+  titlePanel("mtcars data explorer"), # give our app a title
+  
+  sidebarLayout( # this is Shiny's basic type of layout - more complex layouts exist
+    
+    # Sidebar with a slider input for number of bins 
+    sidebarPanel(
         ## add x-axis selector
         selectInput("x_axis", "Select x-axis", choices=c("Miles per gallon" = "mpg",
                                                          "Weight" = "wt",
@@ -27,25 +29,30 @@ ui <- fluidPage(
                                                          "Weight" = "wt",
                                                          "Horsepower" = "hp",
                                                          "Engine displacement" = "disp")),
+        ## display a table 
         tableOutput('table')
       ),
       
-      # Show a plot of the selected relationships
-      mainPanel(
-         ## add plotOutput("")
-        plotOutput('plot')
+    # Show a graph of the selected relationships in a 'main panel'
+    
+    mainPanel(
+        ## display the graph
+        plotOutput('plot') # plotlyOutput
       )
    )
 )
 
 # Define server logic required to draw a histogram
-server <- function(input, output, session) {
-   
+server <- function(input, output) {
+  
+  # code to generate the table
   output$table <- renderTable({
+    # create a dataframe from the mtcars dataset with just the three columns selected by the user using the selectInput()'s
     mtcars[, c(input$x_axis, input$y_axis, input$fac), drop = FALSE]
   }, rownames = TRUE)
   
-  output$plot <- renderPlot({
+  # code to generate the graph
+  output$plot <- renderPlot({ # renderPlotly
     ggplot(mtcars, aes_string(x = input$x_axis, y = input$y_axis)) + 
       geom_point(aes_string(col = input$fac)) +
       scale_color_gradientn(colours = rainbow(5))+
