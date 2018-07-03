@@ -1,10 +1,7 @@
-# Exercise: add functionality to select a variable to colour points or change point shapes
-
 library(shiny)
 library(ggplot2)
 library(plotly)
 
-# Define UI for application that draws a histogram
 ui <- fluidPage(
    
   # Application title
@@ -12,7 +9,7 @@ ui <- fluidPage(
   
   sidebarLayout( # this is Shiny's basic type of layout - more complex layouts exist
     
-    # Sidebar with a slider input for number of bins 
+    # Sidebar with input widgets
     sidebarPanel(
         ## add x-axis selector
         selectInput("x_axis", "Select x-axis", choices=c("Miles per gallon" = "mpg",
@@ -47,9 +44,9 @@ server <- function(input, output) {
   
   # code to generate the table
   output$table <- renderTable({
-    # create a dataframe from the mtcars dataset with just the three columns selected by the user using the selectInput()'s
+    # create a dataframe from the mtcars dataset with just the columns selected by the user using the selectInput()'s
     mtcars[, c(input$x_axis, input$y_axis, input$fac), drop = FALSE]
-  }, rownames = TRUE)
+  })
   
   # code to generate the graph
   output$plot <- renderPlot({ # renderPlotly

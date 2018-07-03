@@ -1,17 +1,17 @@
-# Exercise: add functionality to select a variable to colour points or change point shapes
+# Exercise 1: fill out the template to create a working app!
+# Exercise 2: add functionality to select a 'factor' variable to colour points or change point shapes
 
 library(shiny)
 library(ggplot2)
 
-# Define UI for application that draws a histogram
 ui <- fluidPage(
   
   # Application title
-  titlePanel("mtcars data explorer"), # give our app a title
+  titlePanel(""), # give our app a title
   
   sidebarLayout( # this is Shiny's basic type of layout - more complex layouts exist
 
-    # Sidebar with a slider input for number of bins 
+    # Sidebar with input widgets
     sidebarPanel(
       
       ## add x-axis selector
@@ -24,14 +24,14 @@ ui <- fluidPage(
       ## add factor selector
 
       ## display a table 
-      tableOutput('')
+      tableOutput("")
     ),
     
     # Show a graph of the selected relationships in a 'main panel'
     
     mainPanel(
       ## display the graph
-      plotOutput('')
+      plotOutput("")
     )
   )
 )
@@ -40,14 +40,14 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   # code to generate the table
-  output$### <- renderTable({
-    # create a dataframe from the mtcars dataset with just the three columns selected by the user using the selectInput()'s
-  }, rownames = TRUE)
+  output$YOURVALUEHERE <- renderTable({
+    # create a dataframe from the mtcars dataset with just the columns selected by the user using the selectInput()'s
+  })
   
   # code to generate the plot
-  output$### <- renderPlot({
+  output$YOURVALUEHERE <- renderPlot({
     ggplot(mtcars, aes_string(x = input$x_axis, y = input$y_axis)) + # aes_string is important here!
-      geom_point(aes_string(col = input$fac)) +
+      geom_point() +
       scale_color_gradientn(colours = rainbow(5))+
       theme_minimal()
   })

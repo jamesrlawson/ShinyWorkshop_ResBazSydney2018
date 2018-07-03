@@ -29,9 +29,9 @@ library(shiny)
 #
 # renderPlot is a reactive expression: code wrapped within renderPlot({}) will be re-evaluated any time an input changes
 # 
-# Exercise: identify how the value obtained by the sliderInput is used by the renderPlot expression in the Server 
+# Exercise 1: identify how the value obtained by the sliderInput is used by the renderPlot expression in the Server 
 #  
-# Exercise: identify how the histogram object produced in the Server is passed to the User Interface 
+# Exercise 2: identify how the histogram object produced in the Server is passed to the User Interface 
 # 
 # N.B. if you want to use 'reactive values' (i.e. those that are updated), you must use them within one of Shiny's reactive expressions
  
@@ -41,7 +41,7 @@ library(shiny)
 # this example also implements a 'chain of reactivity', using the reactive({}) expression
 # reactive({}) allows us to assign an expression to an object, which can be called upon in other reactive expressions
 #
-# Exercise: trace the path from the "dataset" input in the UI through the Server, and back to the "view" table in the UI
+# Exercise 3: trace the path from the "dataset" input in the UI through the Server, and back to the "view" table in the UI
 # (hint, think in terms of inputs and outputs)
 #
-# Exercise: play around with resizing the Shiny application window - notice what happens to the layout
+# Exercise 4: play around with resizing the Shiny application window - notice what happens to the layout
