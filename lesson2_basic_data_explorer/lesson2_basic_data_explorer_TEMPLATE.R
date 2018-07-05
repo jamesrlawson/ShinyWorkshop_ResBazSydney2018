@@ -15,7 +15,7 @@ ui <- fluidPage(
     sidebarPanel(
       
       ## add x-axis selector
-      selectInput(inputID="x_axis", label="Select x-axis", choices=c("Miles per gallon" = "mpg",
+      selectInput(inputId="x_axis", label="Select x-axis", choices=c("Miles per gallon" = "mpg",
                                                                      "Weight" = "wt",
                                                                      "Horsepower" = "hp",
                                                                      "Engine displacement" = "disp")),
